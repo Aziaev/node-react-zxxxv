@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:latest
+    container_name: "mongodb"
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=auth
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./data:/data/db
+  cache:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    command: ['--requirepass "secret"']
