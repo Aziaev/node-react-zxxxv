@@ -9,7 +9,7 @@ import { logIn, logOut } from "../auth";
 const router = Router();
 
 router.post(
-  "/loginValidation",
+  "/login",
   guest,
   catchAsync(async (req, res) => {
     await validate(loginValidation, req.body);
