@@ -60,7 +60,7 @@ passwordResetSchema.statics.plaintextToken = function () {
 };
 
 passwordResetSchema.statics.hashedToken = function (plaintextToken: string) {
-  return createHmac("sha", APP_SECRET).update(plaintextToken).digest("hex");
+  return createHmac("sha256", APP_SECRET).update(plaintextToken).digest("hex");
 };
 
 export const PasswordReset = model<PasswordResetDocument, PasswordResetModel>(

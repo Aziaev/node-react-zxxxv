@@ -29,7 +29,8 @@ router.post(
       await sendMail({
         to: email,
         subject: "Reset your password",
-        text: reset.url(token),
+        text:
+          reset.url(token) + "\n" + JSON.stringify({ userId: user.id, token }),
       });
     }
 
@@ -44,12 +45,12 @@ router.post(
   "/password/reset",
   catchAsync(async ({ query, body }, res) => {
     await validate(resetPasswordSchema, { query, body });
-
     const { id, token } = query;
     const { password } = body;
 
     const reset = await PasswordReset.findById(id);
     let user;
+    console.log(reset);
 
     if (
       !reset ||
@@ -70,7 +71,7 @@ router.post(
       text: "Your password was successfully reset",
     });
 
-    res.json({ message: "OK" });
+    res.json({ message: "Password reset" });
   })
 );
 
