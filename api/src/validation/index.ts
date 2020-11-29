@@ -1,4 +1,4 @@
-export * from "./registrationValidation";
+export * from "./registration";
 export * from "./joiUtils";
-export { email } from "./common";
-export { passwordValidation } from "./registrationValidation";
+export * from "./common";
+export * from "./verifyEmail";

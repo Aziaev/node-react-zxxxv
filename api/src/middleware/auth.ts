@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { isLoggedIn } from "../auth";
+import { isLoggedIn, logOut } from "../auth";
+import { SESSION_ABSOLUTE_TIMEOUT } from "../config";
 import { BadRequest, Unauthorized } from "../errors";
+import { catchAsync } from "./asyncMiddleware";
 
 export function guest(req: Request, res: Response, next: NextFunction) {
   if (isLoggedIn(req)) {
@@ -17,3 +19,20 @@ export function auth(req: Request, res: Response, next: NextFunction) {
 
   next();
 }
+
+export const active = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    if (isLoggedIn(req)) {
+      const now = Date.now();
+      const { createdAt } = req.session as Express.Session;
+
+      if (now > createdAt + SESSION_ABSOLUTE_TIMEOUT) {
+        await logOut(req, res);
+
+        return next(new Unauthorized("Session expired"));
+      }
+    }
+
+    next();
+  }
+);

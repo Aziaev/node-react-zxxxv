@@ -12,10 +12,8 @@
   "author": "aziaev@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "@hapi/joi": "^17.1.1",
     "prettier": "2.1.2"
   },
   "devDependencies": {
-    "@types/hapi__joi": "^17.1.6"
   }
 }

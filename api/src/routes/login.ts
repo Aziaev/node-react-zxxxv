@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { validate } from "../validation";
-import { loginValidation } from "../validation/loginValidation";
+import { login } from "../validation/login";
 import { auth, catchAsync, guest } from "../middleware";
 import { User } from "../models";
 import { Unprocessable } from "../errors";
@@ -12,7 +12,7 @@ router.post(
   "/login",
   guest,
   catchAsync(async (req, res) => {
-    await validate(loginValidation, req.body);
+    await validate(login, req.body);
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });

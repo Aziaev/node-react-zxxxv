@@ -4,6 +4,7 @@ import { User } from "../models";
 import { logIn } from "../auth";
 import { catchAsync, guest } from "../middleware";
 import { BadRequest } from "../errors";
+import { sendMail } from "../mail";
 
 const router = Router();
 
@@ -24,6 +25,14 @@ router.post(
     const user = await User.create({ email, name, password });
 
     logIn(req, user.id);
+
+    const link = user.verificationUrl();
+
+    await sendMail({
+      to: email,
+      subject: "Verify your email address",
+      text: link,
+    });
 
     res.json({ message: "OK" });
   })

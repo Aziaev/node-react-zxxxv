@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { SESSION_NAME } from "./config";
+import { UserDocument } from "./models";
 
 export function logIn(req: Request, userId: string) {
   // @ts-ignore
   req.session!.userId = userId;
-
-  console.log(req.session);
-  console.log(req.session.userId);
+  // @ts-ignore
+  req.session!.createdAt = Date.now();
 }
 
 export function isLoggedIn(req: Request) {
@@ -26,3 +26,13 @@ export function logOut(req: Request, res: Response) {
     });
   });
 }
+
+export const markAsVerified = async (user: UserDocument) => {
+  user.verifiedAt = new Date();
+  await user.save();
+};
+
+export const resetPassword = async (user: UserDocument, password: string) => {
+  user.password = password;
+  await user.save();
+};
