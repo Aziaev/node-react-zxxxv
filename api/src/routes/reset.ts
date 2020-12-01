@@ -24,6 +24,7 @@ router.post(
 
     if (user) {
       const token = PasswordReset.plaintextToken();
+      // @ts-ignore
       const reset = await PasswordReset.create({ userId: user.id, token });
 
       await sendMail({

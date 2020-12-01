@@ -8,6 +8,7 @@ router.get(
   "/home",
   auth,
   catchAsync(async (req, res) => {
+    // @ts-ignore
     const user = await User.findById(req.session!.userId);
 
     res.json(user);

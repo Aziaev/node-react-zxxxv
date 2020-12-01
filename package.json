@@ -12,8 +12,9 @@
   "author": "aziaev@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "prettier": "2.1.2"
+    "dotenv": "8.2.0",
+    "prettier": "2.1.2",
+    "typescript": "^4.1.2"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

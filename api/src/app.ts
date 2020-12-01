@@ -8,7 +8,7 @@ import {
   unauthorizedErrorHandler,
   unprocessableErrorHandler,
 } from "./errors";
-import { active, catchAsync } from "./middleware";
+import { active } from "./middleware";
 
 export function createApp(store: Store) {
   const app = express();

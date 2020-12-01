@@ -13,13 +13,16 @@ node_modules
 # production
 /ui/build
 /data
+/api/dist
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+env.variables.json
 .idea
 
 npm-debug.log*

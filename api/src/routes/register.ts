@@ -22,6 +22,7 @@ router.post(
       throw new BadRequest("Invalid email");
     }
 
+    // @ts-ignore
     const user = await User.create({ email, name, password });
 
     logIn(req, user.id);

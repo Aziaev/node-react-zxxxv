@@ -24,6 +24,7 @@ export const active = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     if (isLoggedIn(req)) {
       const now = Date.now();
+      // @ts-ignore
       const { createdAt } = req.session as Express.Session;
 
       if (now > createdAt + SESSION_ABSOLUTE_TIMEOUT) {
