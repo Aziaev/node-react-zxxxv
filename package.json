@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run dev --prefix api",
+    "start": "ts-node-dev --transpile-only --no-notify src --prefix api",
     "dockerUp": "docker-compose up -d",
     "dockerStop": "docker-compose stop",
-    "dockerDown": "docker-compose down"
+    "dockerDown": "docker-compose down",
+    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=false || SET \"NPM_CONFIG_PRODUCTION=false\" && npm install --prefix api --force && npm run build --prefix api"
   },
   "author": "aziaev@gmail.com",
   "license": "ISC",

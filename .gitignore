@@ -1,9 +1,14 @@
+# Docker
+Dockerfile
+docker-compose.yml
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+node_modules
+npm-debug.log
+npm-debug.log*
 /node_modules
 ui/node_modules
-node_modules
 /.pnp
 .pnp.js
 
@@ -16,6 +21,8 @@ node_modules
 /api/dist
 
 # misc
+*.env
+*.dev
 .DS_Store
 .env
 .env.local
@@ -23,9 +30,6 @@ node_modules
 .env.test.local
 .env.production.local
 env.variables.json
-.idea
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+.idea
 /.idea/workspace.xml
