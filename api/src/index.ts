@@ -6,6 +6,7 @@ import { APP_PORT, MONGO_OPTIONS, MONGO_URI, REDIS_OPTIONS } from "./config";
 import { createApp } from "./app";
 
 (async () => {
+  console.log("MONGO_URI, MONGO_OPTIONS", MONGO_URI, MONGO_OPTIONS);
   await mongoose.connect(MONGO_URI, MONGO_OPTIONS);
 
   const RedisStore = connectRedis(session);

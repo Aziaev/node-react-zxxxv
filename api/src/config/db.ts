@@ -12,6 +12,7 @@ export const MONGO_URI = `mongodb://${MONGO_USERNAME}:${encodeURIComponent(
   MONGO_PASSWORD
 )}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`;
 
+console.log("MONGO_URI", MONGO_URI);
 export const MONGO_OPTIONS: ConnectionOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,

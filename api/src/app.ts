@@ -9,7 +9,6 @@ import {
   unprocessableErrorHandler,
 } from "./errors";
 import { active } from "./middleware";
-import path from "path";
 
 export function createApp(store: Store) {
   const app = express();
@@ -26,13 +25,6 @@ export function createApp(store: Store) {
   app.use(verify);
   app.use(reset);
   app.use(login);
-
-  // Static
-  app.use(express.static("public/index"));
-  app.get("*", (req, res) => {
-    console.log("req", req);
-    res.sendFile(path.resolve(__dirname, "..", "public", "index.html"));
-  });
 
   // Error handlers
   app.use(pathNotFoundErrorHandler);

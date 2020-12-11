@@ -1,9 +1,9 @@
-import nodemailer, { SendMailOptions } from "nodemailer";
-import { SMTP_OPTIONS, MAIL_FROM } from "./config";
+import { MAIL_FROM, SMTP_OPTIONS } from "./config";
 
+const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport(SMTP_OPTIONS);
 
-export const sendMail = (options: SendMailOptions) =>
+export const sendMail = (options: any) =>
   transporter.sendMail({
     ...options,
     from: MAIL_FROM,

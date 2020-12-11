@@ -4,9 +4,10 @@
   "description": "node auth test app",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run dev --prefix api",
+    "devApi": "npm run dev --prefix api",
+    "devUi": "npm run start --prefix web",
     "start": "ts-node-dev --transpile-only --no-notify src --prefix api",
-    "dockerUp": "docker-compose up -d",
+    "dockerUp": "docker-compose up",
     "dockerStop": "docker-compose stop",
     "dockerDown": "docker-compose down",
     "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=false || SET \"NPM_CONFIG_PRODUCTION=false\" && npm install --prefix api --force && npm run build --prefix api"
@@ -15,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "8.2.0",
+    "lodash": "^4.17.20",
     "prettier": "2.1.2",
     "typescript": "^4.1.2"
   },

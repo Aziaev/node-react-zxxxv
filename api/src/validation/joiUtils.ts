@@ -11,6 +11,7 @@ export async function validate(schema: ObjectSchema, payload: any) {
   try {
     await schema.validateAsync(payload, { abortEarly: false });
   } catch (e) {
+    console.log(JSON.stringify(e.details));
     throw new BadRequest(e);
   }
 }
