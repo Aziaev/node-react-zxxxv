@@ -12,15 +12,18 @@ export function* appSaga() {
 function* fetchUser() {
   try {
     const user = yield call(API.get({ url: APIRestUrls.home }));
-
     yield put(appActions.fetchUserSuccess(user));
   } catch (e) {
     const { message, status } = e;
     yield put(appActions.fetchUserError({ message, status }));
-    window.location = getNextRouteByStatus({ message, status });
   }
 }
 
 function* flushUser() {
-  // logout here
+  try {
+    yield call(API.post({ url: APIRestUrls.logout }));
+  } catch (e) {
+    const { message, status } = e;
+    yield put(appActions.fetchUserError({ message, status }));
+  }
 }

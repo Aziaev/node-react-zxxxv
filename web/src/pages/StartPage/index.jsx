@@ -1,4 +1,4 @@
-import { Button, Classes, H5 } from "@blueprintjs/core";
+import { Button, Classes, H1 } from "@blueprintjs/core";
 import { isEmpty } from "lodash";
 import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
@@ -13,13 +13,11 @@ export default function StartPage() {
     if (isEmpty(user)) {
       dispatch(appActions.fetchUser());
     }
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   return (
     <>
-      <H5>
-        <a href="#">Startpage</a>
-      </H5>
+      <H1>Startpage</H1>
       <p>
         StartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpageStartpage.
       </p>
@@ -28,4 +26,4 @@ export default function StartPage() {
   );
 }
 
-export const startPageRoute = "/";
+export const START_PAGE_ROUTE = "/";

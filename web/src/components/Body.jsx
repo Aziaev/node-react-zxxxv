@@ -3,15 +3,15 @@ import styled from "styled-components";
 import { FOOTER_HEIGHT } from "./Footer";
 import { HEADER_HEIGHT } from "./Header";
 
-export default function Main({ children }) {
+export default function Body({ children }) {
   return (
-    <StyledMainContainer>
-      <StyledCard interactive>{children}</StyledCard>
-    </StyledMainContainer>
+    <StyledBodyContainer>
+      <StyledCard>{children}</StyledCard>
+    </StyledBodyContainer>
   );
 }
 
-const StyledMainContainer = styled.div`
+const StyledBodyContainer = styled.div`
   height: calc(100% - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT} - 1rem);
   width: 100%;
   max-width: 100%;

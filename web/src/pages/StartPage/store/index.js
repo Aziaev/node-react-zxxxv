@@ -35,6 +35,9 @@ export default function startPageReducer(state = initialState, action) {
         error: action.payload,
       };
 
+    case appActionTypes.FLUSH_USER:
+      return initialState;
+
     case appActionTypes.APP_STATE_IS_LOADING:
       return {
         ...state,

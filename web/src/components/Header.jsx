@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { homePageRoute } from "../pages/Home";
 import { shallowEqual, useSelector } from "react-redux";
 import { userSelector } from "../pages/StartPage/store/selectors";
-import { loginPageRoute } from "../pages/Login";
+import { LOGIN_PAGE_ROUTE } from "../pages/Login";
+import UserButton from "./UserButton";
 
 export default function Header() {
   const user = useSelector(userSelector, shallowEqual);
@@ -23,22 +24,15 @@ export default function Header() {
         <StyledLink to={homePageRoute}>
           <Button className="bp3-minimal" icon="home" text="Home" />
         </StyledLink>
-        <StyledLink to="/me">
-          <Button className="bp3-minimal" icon="document" text="Me" />
-        </StyledLink>
       </Navbar.Group>
       <Navbar.Group align={Alignment.RIGHT}>
         {!isEmpty(user) ? (
-          <>
-            {" "}
-            <Navbar.Divider />
-            <Button className="bp3-minimal" icon="user" text={user.name} />
-          </>
+          <UserButton />
         ) : (
           <>
             {" "}
             <Navbar.Divider />
-            <StyledLink to={loginPageRoute}>
+            <StyledLink to={LOGIN_PAGE_ROUTE}>
               <Button className="bp3-minimal" icon="log-in" text="Login" />
             </StyledLink>
           </>
