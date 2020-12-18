@@ -14,3 +14,5 @@ export default function Me() {
     </>
   );
 }
+
+export const mePageRoute = "/me";

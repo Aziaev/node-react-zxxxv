@@ -2,17 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { BrowserRouter as Router } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
-import getStore from "./store";
+import { history, store } from "./store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={getStore()}>
-      <Router>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
         <App />
-      </Router>
+      </ConnectedRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

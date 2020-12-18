@@ -7,16 +7,19 @@ import {
   Intent,
   ProgressBar,
 } from "@blueprintjs/core";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { appActions } from "../Startpage/store/actions";
-import { Field, Form } from "react-final-form";
-import API from "../../utils/API";
-import { APIRestUrls } from "../../constants/restUrls";
+import { push } from "connected-react-router";
 import { FORM_ERROR } from "final-form";
+import { useEffect } from "react";
+import { Field, Form } from "react-final-form";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import { APIRestUrls } from "../../constants/restUrls";
+import API from "../../utils/API";
 import { extractValidationErrors } from "../../utils/errors";
-import { userSelector } from "../Startpage/store/selectors";
+import { homePageRoute } from "../Home";
+import { startPageRoute } from "../StartPage";
+import { appActions } from "../StartPage/store/actions";
+import { userSelector } from "../StartPage/store/selectors";
 
 export default function Register() {
   const user = useSelector(userSelector, shallowEqual);
@@ -27,18 +30,16 @@ export default function Register() {
 
   async function onSubmit(values) {
     try {
-      const user = await API.post({
+      await API.post({
         url: APIRestUrls.register,
         body: values,
       })();
-
-      appActions.fetchUserSuccess(user);
+      dispatch(push(startPageRoute));
     } catch (e) {
       appActions.setAppError(e);
 
       const validationErrors = extractValidationErrors(e);
       if (validationErrors) {
-        console.log(validationErrors);
         return validationErrors;
       }
 
@@ -202,3 +203,5 @@ const StyledFormGroup = styled(FormGroup)`
     color: ${({ intent }) => intent === Intent.DANGER && intentDangerColor};
   }
 `;
+
+export const registerPageRoute = "/register";

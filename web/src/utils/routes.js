@@ -1,11 +1,14 @@
+import { loginPageRoute } from "../pages/Login";
+import { startPageRoute } from "../pages/StartPage";
 import { HTTPStatuses } from "./API";
 
-export function openNextByStatus({ status }) {
+export function getNextRouteByStatus({ status }) {
   switch (status) {
     case HTTPStatuses["401"]:
-      window.location = "/login";
-      break;
+      return loginPageRoute;
+    case HTTPStatuses["500"]:
+      return startPageRoute;
     default:
-      return;
+      return startPageRoute;
   }
 }

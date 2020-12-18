@@ -4,8 +4,8 @@ import { IN_PROD, APP_HOSTNAME } from "./app";
 const {
   SMTP_HOST = "smtp.mailtrap.io",
   SMTP_PORT = 2525,
-  SMTP_USERNAME = "7e698601a88858",
-  SMTP_PASSWORD = "b47d3ff50982d1",
+  SMTP_USERNAME = "27464e33c65c48",
+  SMTP_PASSWORD = "aabe1572c48056",
 } = process.env;
 
 export const SMTP_OPTIONS: Options = {
@@ -17,5 +17,7 @@ export const SMTP_OPTIONS: Options = {
     pass: SMTP_PASSWORD,
   },
 };
+
+console.log("SMTP OPTIONS", SMTP_OPTIONS, process.env);
 
 export const MAIL_FROM = `noreply@${APP_HOSTNAME}`;

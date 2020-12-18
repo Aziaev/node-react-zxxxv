@@ -1,13 +1,18 @@
 import { Button, Classes, H5 } from "@blueprintjs/core";
+import { isEmpty } from "lodash";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { appActions } from "./store/actions";
+import { userSelector } from "./store/selectors";
 
-export default function Startpage() {
+export default function StartPage() {
+  const user = useSelector(userSelector, shallowEqual);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(appActions.fetchUser());
+    if (isEmpty(user)) {
+      dispatch(appActions.fetchUser());
+    }
   }, [dispatch]);
 
   return (
@@ -22,3 +27,5 @@ export default function Startpage() {
     </>
   );
 }
+
+export const startPageRoute = "/";

@@ -1,14 +1,10 @@
-import {
-  Button,
-  Classes,
-  FormGroup,
-  InputGroup,
-  Switch,
-} from "@blueprintjs/core";
+import { Button, Classes, FormGroup, InputGroup } from "@blueprintjs/core";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { appActions } from "../Startpage/store/actions";
+import { Link } from "react-router-dom";
+import { appActions } from "../StartPage/store/actions";
 import { Form } from "react-final-form";
+import { registerPageRoute } from "../Register";
 
 export default function Login() {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -27,8 +23,6 @@ export default function Login() {
       initialValues={{}}
       onSubmit={onSubmit}
       render={({ handleSubmit, form, submitting, pristine, values }) => {
-        console.log({ handleSubmit, form, submitting, pristine, values });
-
         return (
           <div style={{ width: "30%" }}>
             <h1>Login</h1>
@@ -59,7 +53,7 @@ export default function Login() {
             </FormGroup>
             <Button text="Login" className={Classes.BUTTON} />
             <div style={{ paddingTop: "1rem" }}>
-              <a href="/register">I have no account. Sign me up.</a>
+              <Link to={registerPageRoute}>I have no account. Sign me up.</Link>
             </div>
           </div>
         );
@@ -67,3 +61,5 @@ export default function Login() {
     />
   );
 }
+
+export const loginPageRoute = "/login";

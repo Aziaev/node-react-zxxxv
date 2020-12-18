@@ -16,9 +16,9 @@ export const HTTPStatusesMap = {
   [HTTPStatuses[500]]: "Server error",
 };
 
-export default {
+const API = {
   get(params) {
-    const { url, headers = "defaultHeaders" } = params;
+    const { url } = params;
 
     return async () => {
       const response = await fetch(url);
@@ -57,3 +57,5 @@ export default {
     };
   },
 };
+
+export default API;

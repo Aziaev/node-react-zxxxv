@@ -1,14 +1,14 @@
-import Header from "./components/Header";
-import Main from "./components/Main";
+import { Route, Switch } from "react-router";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 import LayoutWrapper from "./components/layout/LayoutWrapper";
-import { Route, Switch } from "react-router-dom";
-import Startpage from "./pages/Startpage";
-import Home from "./pages/Home";
-import Me from "./pages/Me";
+import Main from "./components/Main";
+import Home, { homePageRoute } from "./pages/Home";
+import Login, { loginPageRoute } from "./pages/Login";
+import Me, { mePageRoute } from "./pages/Me";
 import NotFound from "./pages/NotFound";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Register, { registerPageRoute } from "./pages/Register";
+import StartPage, { startPageRoute } from "./pages/StartPage";
 
 function App() {
   return (
@@ -16,12 +16,12 @@ function App() {
       <Header />
       <Main>
         <Switch>
-          <Route path="/" exact component={Startpage} />
-          <Route path="/home" exact component={Home} />
-          <Route path="/me" exact component={Me} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/register" exact component={Register} />
-          <Route path="*" exact component={NotFound} />
+          <Route path={startPageRoute} exact component={StartPage} />
+          <Route path={homePageRoute} exact component={Home} />
+          <Route path={mePageRoute} exact component={Me} />
+          <Route path={loginPageRoute} exact component={Login} />
+          <Route path={registerPageRoute} exact component={Register} />
+          <Route component={NotFound} />
         </Switch>
       </Main>
       <Footer />
