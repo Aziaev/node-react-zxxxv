@@ -18,6 +18,4 @@ export const SMTP_OPTIONS: Options = {
   },
 };
 
-console.log("SMTP OPTIONS", SMTP_OPTIONS, process.env);
-
 export const MAIL_FROM = `noreply@${APP_HOSTNAME}`;

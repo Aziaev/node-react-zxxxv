@@ -3,9 +3,11 @@ version: '3.7'
 services:
   db:
     image: mongo:latest
-    container_name: "mongodb"
+    container_name: mongodb
     ports:
-      - "27017:27017"
+      - 27017:27017
+    expose:
+      - 27017
     environment:
       - MONGO_INITDB_DATABASE=auth
       - MONGO_INITDB_ROOT_USERNAME=admin
@@ -16,20 +18,20 @@ services:
   cache:
     image: redis:alpine
     ports:
-      - "6379:6379"
+      - 6379:6379
     command: ['--requirepass "secret"']
   api:
     build:
       context: ./api
       dockerfile: Dockerfile
     image: api
-    container_name: "api"
+    container_name: api
     command: /usr/src/app/node_modules/.bin/ts-node-dev --transpile-only --no-notify src
     volumes:
       - ./api/:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - "5000:5000"
+      - 5000:5000
     environment:
       - NODE_ENV=development
       - APP_PORT=5000

@@ -9,6 +9,7 @@ import Me, { ME_PAGE_ROUTE } from "./pages/Me";
 import NotFound from "./pages/NotFound";
 import Register, { REGISTER_PAGE_ROUTE } from "./pages/Register";
 import StartPage, { START_PAGE_ROUTE } from "./pages/StartPage";
+import EmailVerify, { EMAIL_VERIFY_PAGE_ROUTE } from "./pages/EmailVerify";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path={ME_PAGE_ROUTE} exact component={Me} />
           <Route path={LOGIN_PAGE_ROUTE} exact component={Login} />
           <Route path={REGISTER_PAGE_ROUTE} exact component={Register} />
+          <Route path={EMAIL_VERIFY_PAGE_ROUTE} exact component={EmailVerify} />
           <Route component={NotFound} />
         </Switch>
       </Body>

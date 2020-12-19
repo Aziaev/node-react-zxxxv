@@ -3,4 +3,5 @@ export const APIRestUrls = {
   home: "/home",
   login: "/login",
   logout: "/logout",
+  emailVerify: "/email/verify",
 };

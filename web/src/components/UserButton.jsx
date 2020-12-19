@@ -1,5 +1,7 @@
 import {
   Button,
+  Icon,
+  Intent,
   Menu,
   MenuDivider,
   MenuItem,
@@ -7,7 +9,7 @@ import {
   Position,
 } from "@blueprintjs/core";
 import { push } from "connected-react-router";
-import { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ME_PAGE_ROUTE } from "../pages/Me";
 import { appActions } from "../pages/StartPage/store/actions";
@@ -15,31 +17,40 @@ import { userSelector } from "../pages/StartPage/store/selectors";
 
 export default function UserButton() {
   const dispatch = useDispatch();
+  const { name, verifiedAt } = useSelector(userSelector, shallowEqual) || {};
 
-  function handleProfileClick() {
+  const handleProfileClick = useCallback(() => {
     dispatch(push(ME_PAGE_ROUTE));
-  }
+  }, [dispatch]);
 
-  function handleLogoutClick() {
+  const handleLogoutClick = useCallback(() => {
     dispatch(appActions.flushUser());
-  }
+  }, [dispatch]);
 
-  const exampleMenu = useMemo(
+  const menuItems = useMemo(
     () => (
       <Menu>
-        <MenuItem icon="user" text="Profile" onClick={handleProfileClick} />
+        <MenuItem
+          icon={verifiedAt ? "user" : "warning-sign"}
+          intent={Intent.WARNING}
+          text="Profile"
+          onClick={handleProfileClick}
+        />
         <MenuDivider />
         <MenuItem icon="log-out" text="Log out" onClick={handleLogoutClick} />
       </Menu>
     ),
-    [handleProfileClick, handleLogoutClick]
+    [handleProfileClick, handleLogoutClick, verifiedAt]
   );
 
-  const user = useSelector(userSelector, shallowEqual);
-
   return (
-    <Popover content={exampleMenu} position={Position.BOTTOM_RIGHT}>
-      <Button className="bp3-minimal" icon="user" text={user.name} />
+    <Popover content={menuItems} position={Position.BOTTOM_RIGHT}>
+      <>
+        <Button className="bp3-minimal" icon="user">
+          <span>{name}</span>{" "}
+          {!verifiedAt && <Icon icon="warning-sign" intent={Intent.WARNING} />}
+        </Button>
+      </>
     </Popover>
   );
 }

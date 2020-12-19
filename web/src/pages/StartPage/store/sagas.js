@@ -1,7 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { APIRestUrls } from "../../../constants/restUrls";
 import API from "../../../utils/API";
-import { getNextRouteByStatus } from "../../../utils/routes";
 import { appActions, appActionTypes } from "./actions";
 
 export function* appSaga() {

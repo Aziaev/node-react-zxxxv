@@ -2,7 +2,7 @@ import { Document, model, Model, Schema } from "mongoose";
 import { compare, hash } from "bcryptjs";
 import { BCRYPT_WORK_FACTOR, EMAIL_VERIFICATION_TIMEOUT } from "../config/auth";
 import { createHash, createHmac, timingSafeEqual } from "crypto";
-import { APP_ORIGIN, APP_SECRET } from "../config";
+import { APP_ORIGIN, APP_SECRET, WEB_APP_ORIGIN } from "../config";
 
 export interface UserDocument extends Document {
   email: string;
@@ -47,7 +47,7 @@ userSchema.methods.verificationUrl = function () {
   const token = createHash("sha1").update(this.email).digest("hex");
   const expires = Date.now() + EMAIL_VERIFICATION_TIMEOUT;
 
-  const url = `${APP_ORIGIN}/email/verify?id=${this.id}&token=${token}&expires=${expires}`;
+  const url = `${WEB_APP_ORIGIN}/email/verify?id=${this.id}&token=${token}&expires=${expires}`;
   const signature = User.signVerificationUrl(url);
 
   return `${url}&signature=${signature}`;
